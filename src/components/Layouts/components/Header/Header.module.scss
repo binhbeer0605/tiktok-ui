@@ -20,9 +20,13 @@
   justify-content: space-between;
 }
 
+.search,
+.search-result {
+  width: 361px;
+}
+
 .search {
   position: relative;
-  width: 361px;
   height: var(--search-height);
   background-color: #2f2f2f;
   padding-left: 16px;
@@ -57,6 +61,14 @@
     border-color: var(--primary);
   }
 }
+
+.search-title {
+  color: #ffffff80;
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding: 5px 12px;
+}
+
 .clear,
 .loading {
   position: absolute;
