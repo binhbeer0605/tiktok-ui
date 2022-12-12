@@ -11,13 +11,39 @@ import {
   faSpinner,
   faSearch,
   faPlus,
+  faEllipsisVertical,
+  faEarthAsia,
+  faCircleQuestion,
+  faKeyboard,
+  faMoon,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { Wrapper as PopperWrapper } from '@/components/Popper';
 import AccountItem from '@/components/AccountItem';
 import Button from '@/components/Button';
+import Menu from '@/components/Popper/Menu';
 
 const cx = classNames.bind(styles);
+
+const MENU_ITEMS = [
+  {
+    icon: <FontAwesomeIcon icon={faEarthAsia} />,
+    title: 'Tiếng Việt',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+    title: 'Phản hồi và trợ giúp',
+    to: '/feedback',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faKeyboard} />,
+    title: 'Phím tắt bàn phím',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faMoon} />,
+    title: 'Chế độ tối',
+  },
+];
 
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
@@ -36,7 +62,8 @@ function Header() {
         </div>
 
         <Tippy
-          visible={searchResult.length > 0}
+          visible
+          // ={searchResult.length > 0}
           interactive
           render={(attrs) => (
             <div className={cx('search-result')} tabIndex="-1" {...attrs}>
@@ -73,6 +100,12 @@ function Header() {
             Tải lên
           </Button>
           <Button primary>Đăng nhập</Button>
+
+          <Menu items={MENU_ITEMS}>
+            <button className={cx('more-button')}>
+              <FontAwesomeIcon icon={faEllipsisVertical} />
+            </button>
+          </Menu>
         </div>
       </div>
     </header>

@@ -28,6 +28,7 @@ body {
   font-size: 1.6rem;
   line-height: 1.5;
   text-rendering: optimizeSpeed;
+  background: var(--background);
 }
 
 button,
@@ -40,4 +41,5 @@ input,
 a[href] {
   color: var(--text);
   text-decoration: none;
+  display: block;
 }
