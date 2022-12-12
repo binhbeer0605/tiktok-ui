@@ -21,7 +21,30 @@
   border-radius: 0;
   font-weight: 600;
   padding: 11px 18px;
+  line-height: 1.8rem;
+
   &:hover {
     background-color: #2e2e2e;
   }
+}
+
+// Header
+.header {
+  position: relative;
+  height: 50px;
+  color: var(--white);
+  margin-top: -8px;
+}
+.back-button {
+  width: 50px;
+  height: 100%;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--white);
+}
+.header-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
