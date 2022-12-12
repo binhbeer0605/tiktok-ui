@@ -23,6 +23,10 @@
   padding: 11px 18px;
   line-height: 1.8rem;
 
+  &.separate {
+    border-top: 1px solid #474747;
+  }
+
   &:hover {
     background-color: #2e2e2e;
   }

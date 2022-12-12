@@ -20,12 +20,18 @@ import {
   faMoon,
   faPaperPlane,
   faMessage,
+  faUser,
+  faCoins,
+  faVideo,
+  faGear,
+  faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { Wrapper as PopperWrapper } from '@/components/Popper';
 import AccountItem from '@/components/AccountItem';
 import Button from '@/components/Button';
 import Menu from '@/components/Popper/Menu';
+import { faBitcoin } from '@fortawesome/free-brands-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -85,11 +91,27 @@ function Header() {
 
   const userMenu = [
     {
-      icon: <FontAwesomeIcon icon={faCircleQuestion} />,
-      title: 'Phản hồi và trợ giúp',
-      to: '/feedback',
+      icon: <FontAwesomeIcon icon={faUser} />,
+      title: 'Xem hồ sơ',
+      to: '/user',
+    },
+    {
+      icon: <FontAwesomeIcon icon={faBitcoin} />,
+      title: 'Nhận xu',
+      to: '/coins',
+    },
+    {
+      icon: <FontAwesomeIcon icon={faGear} />,
+      title: 'Cài đặt',
+      to: '/setting',
     },
     ...MENU_ITEMS,
+    {
+      icon: <FontAwesomeIcon icon={faSignOut} />,
+      title: 'Đăng xuất',
+      to: '/logout',
+      separate: true,
+    },
   ];
 
   return (
