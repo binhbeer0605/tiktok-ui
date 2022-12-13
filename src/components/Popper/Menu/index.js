@@ -37,7 +37,6 @@ function Menu({ children, items = [], onChange = defaultFunction }) {
 
   return (
     <Tippy
-      visible
       interactive
       offset={[12, 8]}
       placement="bottom-end"

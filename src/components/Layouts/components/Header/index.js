@@ -1,43 +1,35 @@
-import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import images from '@/assets/images';
-
-import HeadLess from '@tippyjs/react/headless'; // different import path!
+// Import Tippy
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCircleXmark,
-  faSpinner,
-  faSearch,
-  faPlus,
-  faEllipsisVertical,
-  faEarthAsia,
-  faCircleQuestion,
-  faKeyboard,
-  faMoon,
-  faPaperPlane,
-  faMessage,
-  faUser,
-  faCoins,
-  faVideo,
-  faGear,
-  faSignOut,
-} from '@fortawesome/free-solid-svg-icons';
-
-import { Wrapper as PopperWrapper } from '@/components/Popper';
-import AccountItem from '@/components/AccountItem';
+// Import components
 import Button from '@/components/Button';
 import Menu from '@/components/Popper/Menu';
-import { faBitcoin } from '@fortawesome/free-brands-svg-icons';
+import Image from '@/components/Image';
+import Search from '../Search';
+// Import Icons components
+import {
+  IconCoins,
+  IconGear,
+  IconKeyboard,
+  IconLanguage,
+  IconLogout,
+  IconMessage,
+  IconMoon,
+  IconMoreMenu,
+  IconPaperPlain,
+  IconPlus,
+  IconQuestion,
+  IconUser,
+} from '@/components/Icons';
 
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
   {
-    icon: <FontAwesomeIcon icon={faEarthAsia} />,
+    icon: <IconLanguage width={20} height={20} />,
     title: 'Tiếng Việt',
     children: {
       title: 'Ngôn ngữ',
@@ -56,29 +48,22 @@ const MENU_ITEMS = [
     },
   },
   {
-    icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+    icon: <IconQuestion width={20} height={20} />,
     title: 'Phản hồi và trợ giúp',
     to: '/feedback',
   },
   {
-    icon: <FontAwesomeIcon icon={faKeyboard} />,
+    icon: <IconKeyboard width={20} height={20} />,
     title: 'Phím tắt bàn phím',
   },
   {
-    icon: <FontAwesomeIcon icon={faMoon} />,
+    icon: <IconMoon width={20} height={20} />,
     title: 'Chế độ tối',
   },
 ];
 
 function Header() {
-  const [searchResult, setSearchResult] = useState([]);
   const currentUser = true;
-
-  useEffect(() => {
-    setTimeout(() => {
-      setSearchResult([]);
-    }, 0);
-  }, []);
 
   const handleMenuChange = (menuItem) => {
     switch (menuItem.type) {
@@ -91,23 +76,23 @@ function Header() {
 
   const userMenu = [
     {
-      icon: <FontAwesomeIcon icon={faUser} />,
+      icon: <IconUser width={20} height={20} />,
       title: 'Xem hồ sơ',
       to: '/user',
     },
     {
-      icon: <FontAwesomeIcon icon={faBitcoin} />,
+      icon: <IconCoins width={20} height={20} />,
       title: 'Nhận xu',
       to: '/coins',
     },
     {
-      icon: <FontAwesomeIcon icon={faGear} />,
+      icon: <IconGear width={20} height={20} />,
       title: 'Cài đặt',
       to: '/setting',
     },
     ...MENU_ITEMS,
     {
-      icon: <FontAwesomeIcon icon={faSignOut} />,
+      icon: <IconLogout width={20} height={20} />,
       title: 'Đăng xuất',
       to: '/logout',
       separate: true,
@@ -121,70 +106,41 @@ function Header() {
           <img src={images.logo} alt="Tiktok" />
         </div>
 
-        <HeadLess
-          visible
-          // ={searchResult.length > 0}
-          interactive
-          render={(attrs) => (
-            <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-              <PopperWrapper>
-                <h4 className={cx('search-title')}>Tài khoản</h4>
-                <AccountItem />
-                <AccountItem />
-                <AccountItem />
-                <AccountItem />
-                <AccountItem />
-              </PopperWrapper>
-            </div>
-          )}
-        >
-          <div className={cx('search')}>
-            <input placeholder="Tìm kiếm tài khoản và video" spellCheck={false} />
-            <button className={cx('clear')}>
-              <FontAwesomeIcon icon={faCircleXmark} />
-            </button>
-
-            {/* <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> */}
-
-            <button className={cx('search-btn')}>
-              <FontAwesomeIcon icon={faSearch} />
-            </button>
-          </div>
-        </HeadLess>
+        <Search />
 
         <div className={cx('actions')}>
-          <Button text leftIcon={<FontAwesomeIcon icon={faPlus} />}>
+          <Button text leftIcon={<IconPlus width={20} height={20} />}>
             Tải lên
           </Button>
           {currentUser ? (
             <>
               <Tippy delay={[200]} content="Tin nhắn" placement="bottom">
                 <button className={cx('action-button')}>
-                  <FontAwesomeIcon icon={faPaperPlane} />
+                  <IconPaperPlain width={26} height={26} />
                 </button>
               </Tippy>
 
               <Tippy delay={[200]} content="Hộp thư" placement="bottom">
                 <button className={cx('action-button')}>
-                  <FontAwesomeIcon icon={faMessage} />
+                  <IconMessage width={32} height={32} />
+                  <span className={cx('badge')}>12</span>
                 </button>
               </Tippy>
             </>
           ) : (
-            <>
-              <Button primary>Đăng nhập</Button>
-            </>
+            <Button primary>Đăng nhập</Button>
           )}
           <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
             {currentUser ? (
-              <img
+              <Image
                 src="https://scontent.fvca1-3.fna.fbcdn.net/v/t39.30808-1/271524672_695562351821129_4890605205469645363_n.jpg?stp=dst-jpg_p320x320&_nc_cat=110&ccb=1-7&_nc_sid=7206a8&_nc_ohc=0ARLAO5tlAwAX8j4G7E&_nc_ht=scontent.fvca1-3.fna&oh=00_AfBiIEHtvRf4FcgHP0MZPE2gFPPIbNT6zsUZAb8-UXbcHw&oe=639AB631"
                 className={cx('user-avatar')}
-                alt=""
+                alt="avatar"
+                // fallback="https://p16-sign-sg.tiktokcdn.com/aweme/720x720/tos-alisg-avt-0068/51764eb35cdc03f8457b41b1575dea42.jpeg?x-expires=1671076800&x-signature=YIfrVs7qQ5bLTTpCTsfqTxL0jl4%3D"
               />
             ) : (
               <button className={cx('more-button')}>
-                <FontAwesomeIcon icon={faEllipsisVertical} />
+                <IconMoreMenu width={20} height={20} />
               </button>
             )}
           </Menu>
