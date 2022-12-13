@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+// classname * scss
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 // Import Tippy
@@ -11,6 +12,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
 // Import hooks custom
 import { useDebounce } from '@/hooks';
+// Import apiServices
+import * as searchServices from '@/apiServices/searchServices';
+
+//
 const cx = classNames.bind(styles);
 
 function Search() {
@@ -39,21 +44,16 @@ function Search() {
             return;
         }
 
-        setLoading(true);
+        const fetchApi = async () => {
+            setLoading(true);
 
-        fetch(
-            `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-                debounce,
-            )}&type=less`,
-        )
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
+            const result = await searchServices.search(debounce);
+            setSearchResult(result);
+
+            setLoading(false);
+        };
+
+        fetchApi();
     }, [debounce]);
 
     return (
