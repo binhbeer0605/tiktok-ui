@@ -9,7 +9,8 @@ import AccountItem from '@/components/AccountItem';
 // Import FontAwesomeIcon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
-
+// Import hooks custom
+import { useDebounce } from '@/hooks';
 const cx = classNames.bind(styles);
 
 function Search() {
@@ -17,6 +18,8 @@ function Search() {
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
+
+    const debounce = useDebounce(searchValue, 500);
 
     const inputRef = useRef();
 
@@ -31,7 +34,7 @@ function Search() {
     };
 
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!debounce.trim()) {
             setSearchResult([]);
             return;
         }
@@ -40,7 +43,7 @@ function Search() {
 
         fetch(
             `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-                searchValue,
+                debounce,
             )}&type=less`,
         )
             .then((res) => res.json())
@@ -51,7 +54,7 @@ function Search() {
             .catch(() => {
                 setLoading(false);
             });
-    }, [searchValue]);
+    }, [debounce]);
 
     return (
         <HeadLessTippy
