@@ -1,54 +1,59 @@
 // Menu wrapper
 .menu-list {
-  width: 224px;
+    width: 224px;
 
-  // Menu items
-  .menu-item {
-    margin-left: 0;
-  }
+    // Menu items
+    .menu-item {
+        margin-left: 0;
+    }
 }
 
 .menu-popper {
-  padding-bottom: 8px;
+    padding-bottom: 8px;
+}
+
+.menu-scrollable {
+    overflow-y: auto;
 }
 
 // Menu items
 .menu-item {
-  color: var(--white);
-  background-color: transparent;
-  width: 100%;
-  justify-content: flex-start;
-  border-radius: 0;
-  font-weight: 600;
-  padding: 11px 18px;
-  line-height: 1.8rem;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 11px 18px;
+    background-color: transparent;
+    border-radius: 0;
+    color: var(--white);
+    font-weight: 600;
+    line-height: 1.8rem;
 
-  &.separate {
-    border-top: 1px solid #474747;
-  }
+    &.separate {
+        border-top: 1px solid #474747;
+    }
 
-  &:hover {
-    background-color: #2e2e2e;
-  }
+    &:hover {
+        background-color: #2e2e2e;
+    }
 }
 
 // Header
 .header {
-  position: relative;
-  height: 50px;
-  color: var(--white);
-  margin-top: -8px;
+    position: relative;
+    height: 50px;
+    color: var(--white);
+    margin-top: -8px;
+    flex-shrink: 0;
 }
 .back-button {
-  width: 50px;
-  height: 100%;
-  background-color: transparent;
-  cursor: pointer;
-  color: var(--white);
+    width: 50px;
+    height: 100%;
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--white);
 }
 .header-title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
