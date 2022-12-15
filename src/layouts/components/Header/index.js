@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import routesConfig from '@/config/routes';
+import config from '@/config';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import images from '@/assets/images';
@@ -104,7 +104,7 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to={routesConfig.home}>
+                <Link to={config.routes.home}>
                     <img src={images.logo} alt="Tiktok" />
                 </Link>
 

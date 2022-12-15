@@ -13,7 +13,7 @@ import { faCircleXmark, faSearch, faSpinner } from '@fortawesome/free-solid-svg-
 // Import hooks custom
 import { useDebounce } from '@/hooks';
 // Import apiServices
-import * as searchServices from '@/apiServices/searchServices';
+import * as searchServices from '@/services/searchService';
 
 const cx = classNames.bind(styles);
 
